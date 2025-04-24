@@ -37,7 +37,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return serializers.RecipeSerializer
         elif self.action == "upload_image":
             return serializers.RecipeImageSerializer
-        
+
         return self.serializer_class
 
     def perform_create(self, serializer):
