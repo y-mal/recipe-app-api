@@ -396,7 +396,7 @@ class ImageUploadTest(TestCase):
         self.client.force_authenticate(self.user)
         self.recipe = create_recipe(user=self.user)
     
-    def teadDown(self):
+    def tearDown(self):
         self.recipe.image.delete()
 
     def test_upload_image(self):
@@ -407,7 +407,7 @@ class ImageUploadTest(TestCase):
             img.save(image_file, format="JPEG")
             image_file.seek(0)
             payload = {'image': image_file}
-            res = self.client.post(url, payload, format="multipart")
+            res = self.client.post(url, payload, format="multipart") 
 
         self.recipe.refresh_from_db()
         self.assertEqual(res.status_code, status.HTTP_200_OK)
